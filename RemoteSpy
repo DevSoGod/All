@@ -1,6 +1,5 @@
 -- https://v3rmillion.net/showthread.php?tid=1198556
 -- https://github.com/78n/SimpleSpy
-
 if getgenv().SimpleSpyExecuted and type(getgenv().SimpleSpyShutdown) == "function" then
     getgenv().SimpleSpyShutdown()
 end
@@ -19,6 +18,61 @@ local configsmetatable = getmetatable(configs)
 
 configsmetatable.__index = function(self,index)
     return realconfigs[index]
+end
+local function RainbowText(text)
+	spawn(function()
+		local add = 10;
+		wait(0.1);
+		local k = 1;
+		while k <= 255 do
+			text.TextColor3 = Color3.new(k / 255, NaN, NaN);
+			k = k + add;
+			wait();
+		end
+		while true do
+			k = 1;
+			while k <= 255 do
+				text.TextColor3 = Color3.new(255 / 255, k / 255, NaN);
+				k = k + add;
+				wait();
+			end
+			k = 1;
+			while k <= 255 do
+				text.TextColor3 = Color3.new((255 / 255) - (k / 255), 255 / 255, NaN);
+				k = k + add;
+				wait();
+			end
+			k = 1;
+			while k <= 255 do
+				text.TextColor3 = Color3.new(NaN, 255 / 255, k / 255);
+				k = k + add;
+				wait();
+			end
+			k = 1;
+			while k <= 255 do
+				text.TextColor3 = Color3.new(NaN, (255 / 255) - (k / 255), 255 / 255);
+				k = k + add;
+				wait();
+			end
+			k = 1;
+			while k <= 255 do
+				text.TextColor3 = Color3.new(k / 255, NaN, 255 / 255);
+				k = k + add;
+				wait();
+			end
+			k = 1;
+			while k <= 255 do
+				text.TextColor3 = Color3.new(255 / 255, NaN, (255 / 255) - (k / 255));
+				k = k + add;
+				wait();
+			end
+			while k <= 255 do
+				text.TextColor3 = Color3.new((255 / 255) - (k / 255), NaN, NaN);
+				k = k + add;
+				wait();
+			end
+		end
+	end);
 end
 
 local oth = syn and syn.oth
@@ -232,7 +286,7 @@ local CodeBox = Create("Frame",{Parent = RightPanel,BackgroundColor3 = Color3.ne
 local ScrollingFrame = Create("ScrollingFrame",{Parent = RightPanel,Active = true,BackgroundColor3 = Color3.new(1, 1, 1),BackgroundTransparency = 1,Position = UDim2.new(0, 0, 0.5, 0),Size = UDim2.new(1, 0, 0.5, -9),CanvasSize = UDim2.new(0, 0, 0, 0),ScrollBarThickness = 4})
 local UIGridLayout = Create("UIGridLayout",{Parent = ScrollingFrame,HorizontalAlignment = Enum.HorizontalAlignment.Center,SortOrder = Enum.SortOrder.LayoutOrder,CellPadding = UDim2.new(0, 0, 0, 0),CellSize = UDim2.new(0, 94, 0, 27)})
 local TopBar = Create("Frame",{Parent = Background,BackgroundColor3 = Color3.fromRGB(37, 35, 38),BorderSizePixel = 0,Size = UDim2.new(0, 450, 0, 19)})
-local Simple = Create("TextButton",{Parent = TopBar,BackgroundColor3 = Color3.new(1, 1, 1),AutoButtonColor = false,BackgroundTransparency = 1,Position = UDim2.new(0, 5, 0, 0),Size = UDim2.new(0, 57, 0, 18),Font = Enum.Font.SourceSansBold,Text =  "SimpleSpy",TextColor3 = Color3.new(1, 1, 1),TextSize = 14,TextXAlignment = Enum.TextXAlignment.Left})
+local Simple = Create("TextButton",{Parent = TopBar,BackgroundColor3 = Color3.new(1, 1, 1),AutoButtonColor = false,BackgroundTransparency = 1,Position = UDim2.new(0, 5, 0, 0),Size = UDim2.new(0, 57, 0, 18),Font = Enum.Font.SourceSansBold,Text =  "SLH_Spy Enable",TextColor3 = Color3.new(1, 1, 1),TextSize = 14,TextXAlignment = Enum.TextXAlignment.Left})
 local CloseButton = Create("TextButton",{Parent = TopBar,BackgroundColor3 = Color3.new(0.145098, 0.141176, 0.14902),BorderSizePixel = 0,Position = UDim2.new(1, -19, 0, 0),Size = UDim2.new(0, 19, 0, 19),Font = Enum.Font.SourceSans,Text = "",TextColor3 = Color3.new(0, 0, 0),TextSize = 14})
 local ImageLabel = Create("ImageLabel",{Parent = CloseButton,BackgroundColor3 = Color3.new(1, 1, 1),BackgroundTransparency = 1,Position = UDim2.new(0, 5, 0, 5),Size = UDim2.new(0, 9, 0, 9),Image = "http://www.roblox.com/asset/?id=5597086202"})
 local MaximizeButton = Create("TextButton",{Parent = TopBar,BackgroundColor3 = Color3.new(0.145098, 0.141176, 0.14902),BorderSizePixel = 0,Position = UDim2.new(1, -38, 0, 0),Size = UDim2.new(0, 19, 0, 19),Font = Enum.Font.SourceSans,Text = "",TextColor3 = Color3.new(0, 0, 0),TextSize = 14})
@@ -407,35 +461,33 @@ function scaleToolTip()
 end
 
 --- Executed when the toggle button (the SimpleSpy logo) is hovered over
-function onToggleButtonHover()
+--[[function onToggleButtonHover()
     if not toggle then
         TweenService:Create(Simple, TweenInfo.new(0.5), {TextColor3 = Color3.fromRGB(252, 51, 51)}):Play()
     else
         TweenService:Create(Simple, TweenInfo.new(0.5), {TextColor3 = Color3.fromRGB(68, 206, 91)}):Play()
     end
 end
-
+]]
 --- Executed when the toggle button is unhovered over
-function onToggleButtonUnhover()
-    TweenService:Create(Simple, TweenInfo.new(0.5), {TextColor3 = Color3.fromRGB(255, 255, 255)}):Play()
-end
+RainbowText(Simple)
 
 --- Executed when the X button is hovered over
-function onXButtonHover()
+--[[function onXButtonHover()
     TweenService:Create(CloseButton, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(255, 60, 60)}):Play()
 end
-
+]]
 --- Executed when the X button is unhovered over
-function onXButtonUnhover()
+--[[function onXButtonUnhover()
     TweenService:Create(CloseButton, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(37, 36, 38)}):Play()
 end
-
+]]
 --- Toggles the remote spy method (when button clicked)
 function onToggleButtonClick()
-    if toggle then
-        TweenService:Create(Simple, TweenInfo.new(0.5), {TextColor3 = Color3.fromRGB(252, 51, 51)}):Play()
+    if toggle == true then
+        Simple.Text = "SLH_Spy Disable"
     else
-        TweenService:Create(Simple, TweenInfo.new(0.5), {TextColor3 = Color3.fromRGB(68, 206, 91)}):Play()
+        Simple.Text = "SLH_Spy Enable"
     end
     toggleSpyMethod()
 end
@@ -988,9 +1040,9 @@ function newRemote(type, data)
         Blocked = data.blocked,
         Source = callingscript,
         returnvalue = data.returnvalue,
-        GenScript = "-- Generating, please wait...\n-- (If this message persists, the remote args are likely extremely long)"
+        GenScript = "-- Generating please wait..."
     }
-
+    codebox:setRaw("-- Generating please wait...")
     logs[#logs + 1] = log
     local connect = Button.MouseButton1Click:Connect(function()
         logthread(running())
@@ -1944,7 +1996,6 @@ if not getgenv().SimpleSpyExecuted then
         connectResize()
         SimpleSpy3.Enabled = true
         logthread(spawn(function()
-            delay(1,onToggleButtonUnhover)
         end))
         schedulerconnect = RunService.Heartbeat:Connect(taskscheduler)
         bringBackOnResize()
@@ -2151,25 +2202,15 @@ newButton(
 )
 
 --- Excludes all Remotes that share the same name as the selected.Log remote from the RemoteSpy
-newButton(
-    "Exclude (n)",
-    function() return "Click to exclude all remotes with this name.\nExcluding a remote makes SimpleSpy ignore it, but it will continue to be usable." end,
-    function()
-        if selected then
-            blacklist[selected.Name] = true
-            TextLabel.Text = "Excluded!"
-        end
-    end
-)
-
---- clears blacklist
-newButton("Clr Blacklist",
-function() return "Click to clear the blacklist.\nExcluding a remote makes SimpleSpy ignore it, but it will continue to be usable." end,
+--[[newButton("Exclude (n)",
+function() return "Click to exclude all remotes with this name.\nExcluding a remote makes SimpleSpy ignore it, but it will continue to be usable." end,
 function()
-    blacklist = {}
-    TextLabel.Text = "Blacklist cleared!"
+    if selected then
+        blacklist[selected.Name] = true
+        TextLabel.Text = "Excluded!"
+    end
 end)
-
+]]
 --- Prevents the selected.Log Remote from firing the server (still logged)
 newButton(
     "Block (i)",
@@ -2183,7 +2224,7 @@ newButton(
 )
 
 --- Prevents all remotes from firing that share the same name as the selected.Log remote from the RemoteSpy (still logged)
-newButton("Block (n)",function()
+--[[newButton("Block (n)",function()
     return "Click to stop remotes with this name from firing.\nBlocking a remote won't remove it from SimpleSpy logs, but it will not continue to fire the server." end,
     function()
         if selected then
@@ -2192,16 +2233,7 @@ newButton("Block (n)",function()
         end
     end
 )
-
---- clears blacklist
-newButton(
-    "Clr Blocklist",
-    function() return "Click to stop blocking remotes.\nBlocking a remote won't remove it from SimpleSpy logs, but it will not continue to fire the server." end,
-    function()
-        blocklist = {}
-        TextLabel.Text = "Blocklist cleared!"
-    end
-)
+]]
 
 --- Attempts to decompile the source script
 newButton("Decompile",
@@ -2234,6 +2266,27 @@ newButton("Decompile",
         end
     end
 )
+
+--- clears blacklist
+newButton("Clr Blacklist",
+function() return "Click to clear the blacklist.\nExcluding a remote makes SimpleSpy ignore it, but it will continue to be usable." end,
+function()
+    blacklist = {}
+    TextLabel.Text = "Blacklist cleared!"
+end)
+
+
+
+--- clears blacklist
+newButton(
+    "Clr Blocklist",
+    function() return "Click to stop blocking remotes.\nBlocking a remote won't remove it from SimpleSpy logs, but it will not continue to fire the server." end,
+    function()
+        blocklist = {}
+        TextLabel.Text = "Blocklist cleared!"
+    end
+)
+
 
     --[[newButton(
         "returnvalue",
@@ -2296,67 +2349,32 @@ function()
     configs.advancedinfo = not configs.advancedinfo
     TextLabel.Text = ("[%s] Display more remoteinfo"):format(configs.advancedinfo and "ENABLED" or "DISABLED")
 end)
-newButton(
-    "Genarate Loop",
-    function() return "Genarate while wait() do end" end,
-    function()
-        setclipboard("while wait() do\n"..codebox:getString().."end")
-        TextLabel.Text = "Copied successfully!"
-    end
-)
 newButton("Run 100x",function()
     return "Run code 100 times with 1 click"
 end,
     function()
     local Remote = selected and selected.Remote
-        if Remote then
-            TextLabel.Text = "Executing..."
-            xpcall(function()
-                for i = 1,100 do
-                    task.spawn(function()
-                        local returnvalue
-                        if Remote:IsA("RemoteEvent") then
-                            returnvalue = Remote:FireServer(unpack(selected.args))
-                        else
-                            returnvalue = Remote:InvokeServer(unpack(selected.args))
-                        end
-                    end)
-                end
-                TextLabel.Text = ("Executed successfully!\n%s"):format(v2s(returnvalue))
-            end,function(err)
-                TextLabel.Text = ("Execution error!\n%s"):format(err)
-            end)
-            return
-        end
-        TextLabel.Text = "Source not found"
+    if Remote then
+        TextLabel.Text = "Executing..."
+        xpcall(function()
+            for i = 1,100 do
+                task.spawn(function()
+                    local returnvalue
+                    if Remote:IsA("RemoteEvent") then
+                        returnvalue = Remote:FireServer(unpack(selected.args))
+                    else
+                        returnvalue = Remote:InvokeServer(unpack(selected.args))
+                    end
+                end)
+            end
+            TextLabel.Text = ("Executed successfully!\n%s"):format(v2s(returnvalue))
+        end,function(err)
+            TextLabel.Text = ("Execution error!\n%s"):format(err)
+        end)
+        return
+    end
+    TextLabel.Text = "Source not found"
 end)
-newButton("Run 1000x",function()
-    return "Run code 1000 times with 1 click"
-end,
-    function()
-    local Remote = selected and selected.Remote
-        if Remote then
-            TextLabel.Text = "Executing..."
-            xpcall(function()
-                for i = 1,1000 do
-                    task.spawn(function()
-                        local returnvalue
-                        if Remote:IsA("RemoteEvent") then
-                            returnvalue = Remote:FireServer(unpack(selected.args))
-                        else
-                            returnvalue = Remote:InvokeServer(unpack(selected.args))
-                        end
-                    end)
-                end
-                TextLabel.Text = ("Executed successfully!\n%s"):format(v2s(returnvalue))
-            end,function(err)
-                TextLabel.Text = ("Execution error!\n%s"):format(err)
-            end)
-            return
-        end
-        TextLabel.Text = "Source not found"
-end)
-
 newButton("Load SSV2.2",function()
     return "Load's Simple Spy V2.2"
 end,
@@ -2369,14 +2387,66 @@ end,
 function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/78n/SimpleSpy/main/SimpleSpySource.lua"))()
 end)
-local SuperSecretFolder = Create("Folder",{Parent = SimpleSpy3})
-newButton("SUPER SECRET BUTTON",function()
-    return "You already know what it does"
-end,
-function()
-    local soundId = "rbxassetid://6454805792"
-    local sound = Instance.new("Sound")
-    sound.SoundId = soundId
-    sound.Parent = game.Players.LocalPlayer.Character
-    sound:Play()
-end)
+newButton("Fast Loop",
+    function() return "Click to Enable Disable Loop" end,
+    function()
+        local Remote = selected and selected.Remote
+        if Remote then
+            if not configs.fastloop then
+                configs.fastloop = true
+                xpcall(function()
+                    TextLabel.Text = ("Looping!")
+                    repeat wait()
+                        local returnvalue
+                        if Remote:IsA("RemoteEvent") then
+                            returnvalue = Remote:FireServer(unpack(selected.args))
+                        else
+                            returnvalue = Remote:InvokeServer(unpack(selected.args))
+                        end
+                    until configs.fastloop == false
+                end,
+                function(err)
+                    TextLabel.Text = ("Execution error!\n%s"):format(err)
+                end)
+                return
+            elseif configs.fastloop then
+                configs.fastloop = false
+                TextLabel.Text = ("Stoped Loop")
+                return
+            end
+        end
+        TextLabel.Text = "Source not found"
+    end
+)
+newButton("Slow Loop",
+    function() return "Click to Enable Disable Loop" end,
+    function()
+        local Remote = selected and selected.Remote
+        if Remote then
+            if not configs.Slowloop then
+                configs.Slowloop = true
+                xpcall(function()
+                    TextLabel.Text = ("Looping!")
+                    repeat wait()
+                        local returnvalue
+                        if Remote:IsA("RemoteEvent") then
+                            returnvalue = Remote:FireServer(unpack(selected.args))
+                        else
+                            returnvalue = Remote:InvokeServer(unpack(selected.args))
+                        end
+                        wait(1)
+                    until configs.Slowloop == false
+                end,
+                function(err)
+                    TextLabel.Text = ("Execution error!\n%s"):format(err)
+                end)
+                return
+            elseif configs.Slowloop then
+                configs.Slowloop = false
+                TextLabel.Text = ("Stoped Loop")
+                return
+            end
+        end
+        TextLabel.Text = "Source not found"
+    end
+)
