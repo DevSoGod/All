@@ -1040,9 +1040,8 @@ function newRemote(type, data)
         Blocked = data.blocked,
         Source = callingscript,
         returnvalue = data.returnvalue,
-        GenScript = "-- Generating please wait..."
+        GenScript = "🤡"
     }
-    codebox:setRaw("-- Generating please wait...")
     logs[#logs + 1] = log
     local connect = Button.MouseButton1Click:Connect(function()
         logthread(running())
